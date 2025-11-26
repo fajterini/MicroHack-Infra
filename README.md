@@ -1,172 +1,182 @@
 # Azure Infrastructure Hackathon
 
-Welcome to the Azure Infrastructure Hackathon! This hands-on learning experience will guide you through Azure fundamentals, from manual portal operations to fully automated infrastructure deployment with CI/CD pipelines.
+Vítejte na Azure Infrastructure Hackathonu! Tento praktický workshop vás provede základy Azure – od manuální práce v portálu až po plně automatizované nasazení infrastruktury pomocí CI/CD pipeline.
 
 ## Overview
 
-This hackathon consists of seven progressive challenges designed to build your Azure skills from the ground up:
+Hackathon se skládá ze sedmi progresivních výzev navržených tak, aby vás postupně provedly světem Azure:
 
-1. **Azure Portal Fundamentals** - Create VNet, Subnet, convert VMDK to VHD, deploy VM, configure NSG
-2. **Azure Backup** - Enable and configure backup for virtual machines
-3. **Disaster Recovery** - Delete and restore VM from backup
-4. **Infrastructure as Code** - Recreate VM using Terraform
-5. **Terraform Modules** - Create reusable infrastructure modules
-6. **Azure Key Vault** - Secure secrets management for credentials
-7. **CI/CD Pipeline** - Automate infrastructure deployment with GitHub Actions
+1. **Základy Azure Portalu** – Vytvoření VNet, Subnet, konverze VMDK na VHD, nasazení VM, konfigurace NSG
+2. **Azure Backup** – Povolení a konfigurace zálohování pro virtuální stroje
+3. **Disaster Recovery** – Smazání a obnova VM ze zálohy
+4. **Infrastructure as Code** – Znovuvytvoření VM pomocí Terraformu
+5. **Terraform Modules** – Vytvoření znovupoužitelných infrastrukturních modulů
+6. **Azure Key Vault** – Bezpečná správa tajemství (secrets)
+7. **CI/CD Pipeline** – Automatizace nasazení infrastruktury pomocí GitHub Actions
 
-## Prerequisites
+## Přihlášení
 
-Before starting the hackathon, ensure you have:
+Pro přihlášení do Azure použijte následující formát uživatelského jména:
 
-- **Azure Subscription** with Contributor or Owner access
-- **Web Browser** for Azure Portal access
-- **Azure CLI** installed and configured ([Install Guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
-- **Terraform** (v1.0 or later) - required from Challenge 04 onwards ([Install Guide](https://learn.hashicorp.com/tutorials/terraform/install-cli))
-- **PowerShell with Hyper-V** (Windows) or **qemu-img** (Linux/Mac) for VMDK to VHD conversion
-- **Git** for version control
-- **GitHub account** with repository access (for Challenge 07)
-- **Text editor or IDE** (VS Code recommended)
+```
+user<číslo_uživatele>@MngEnvMCAP872133.onmicrosoft.com
+```
 
-See [Prerequisites Documentation](docs/prerequisites.md) for detailed setup instructions.
+Například: `user1@MngEnvMCAP872133.onmicrosoft.com`, `user2@MngEnvMCAP872133.onmicrosoft.com` atd.
 
-## Getting Started
+Heslo vám bude sděleno organizátory workshopu.
 
-1. Clone this repository:
+## Předpoklady
+
+Před zahájením hackathonu se ujistěte, že máte:
+
+- **Azure Subscription** s oprávněním Contributor nebo Owner
+- **Webový prohlížeč** pro přístup k Azure Portalu
+- **Azure CLI** nainstalované a nakonfigurované ([Instalační příručka](https://docs.microsoft.com/cs-cz/cli/azure/install-azure-cli))
+- **Terraform** (verze 1.0 nebo novější) – nutný od Výzvy 04 ([Instalační příručka](https://learn.hashicorp.com/tutorials/terraform/install-cli))
+- **PowerShell s Hyper-V** (Windows) nebo **qemu-img** (Linux/Mac) pro konverzi VMDK na VHD
+- **Git** pro verzování kódu
+- **GitHub účet** s přístupem k repozitáři (pro Výzvu 07)
+- **Textový editor nebo IDE** (doporučujeme VS Code)
+
+## Začínáme
+
+1. Naklonujte tento repozitář:
    ```bash
    git clone https://github.com/msucharda/microhacks-infra.git
    cd microhacks-infra
    ```
 
-2. Log in to Azure:
+2. Přihlaste se do Azure:
    ```bash
    az login
-   az account set --subscription <your-subscription-id>
+   az account set --subscription <vaše-subscription-id>
    ```
 
-3. Start with Challenge 01 and progress through each challenge sequentially.
+3. Začněte s Výzvou 01 a postupně procházejte jednotlivé výzvy.
 
-## Challenges
+## Výzvy
 
-### Challenge 01: Azure Portal Fundamentals
-**Objective:** Get hands-on with Azure basics through the Portal
+### Výzva 01: Základy Azure Portalu
+**Cíl:** Prakticky se seznámit se základy Azure prostřednictvím Portalu
 
-Navigate to `challenges/challenge-01/` to:
-- Create Virtual Network and Subnet
-- Set up Storage Account
-- Convert VMDK to VHD format
-- Deploy a Virtual Machine
-- Configure Network Security Groups
+Přejděte do `challenges/challenge-01/` a:
+- Vytvořte Virtual Network a Subnet
+- Nastavte Storage Account
+- Převeďte VMDK na formát VHD
+- Nasaďte Virtual Machine
+- Nakonfigurujte Network Security Groups
 
-**Skills:** Azure Portal navigation, Networking, Storage, VM management  
-**Time:** 60-90 minutes
+**Dovednosti:** Navigace v Azure Portalu, sítě, storage, správa VM  
+**Čas:** 60–90 minut
 
-### Challenge 02: Enable Azure Backup
-**Objective:** Protect virtual machines with Azure Backup
+### Výzva 02: Povolení Azure Backup
+**Cíl:** Ochrana virtuálních strojů pomocí Azure Backup
 
-Navigate to `challenges/challenge-02/` to:
-- Create a Recovery Services Vault
-- Configure backup policies
-- Enable backup for your VM
-- Trigger and monitor backup jobs
+Přejděte do `challenges/challenge-02/` a:
+- Vytvořte Recovery Services Vault
+- Nakonfigurujte zálohovací politiky
+- Povolte zálohování pro vaše VM
+- Spusťte a sledujte zálohovací úlohy
 
-**Skills:** Business continuity, Disaster recovery, Backup management  
-**Time:** 30-45 minutes
+**Dovednosti:** Business continuity, disaster recovery, správa zálohování  
+**Čas:** 30–45 minut
 
-### Challenge 03: Delete and Restore VM from Backup
-**Objective:** Practice disaster recovery procedures
+### Výzva 03: Smazání a obnova VM ze zálohy
+**Cíl:** Procvičení postupů disaster recovery
 
-Navigate to `challenges/challenge-03/` to:
-- Delete your virtual machine
-- Restore VM from backup
-- Verify data integrity
-- Understand restore options
+Přejděte do `challenges/challenge-03/` a:
+- Smažte váš virtuální stroj
+- Obnovte VM ze zálohy
+- Ověřte integritu dat
+- Pochopte možnosti obnovy
 
-**Skills:** Disaster recovery, Restore operations, Data protection  
-**Time:** 45-60 minutes
+**Dovednosti:** Disaster recovery, operace obnovy, ochrana dat  
+**Čas:** 45–60 minut
 
-### Challenge 04: Recreate VM Using Terraform
-**Objective:** Transition to Infrastructure as Code
+### Výzva 04: Znovuvytvoření VM pomocí Terraformu
+**Cíl:** Přechod na Infrastructure as Code
 
-Navigate to `challenges/challenge-04/` to:
-- Write Terraform configuration files
-- Use data sources for existing resources
-- Deploy VM with Terraform
-- Manage infrastructure state
+Přejděte do `challenges/challenge-04/` a:
+- Napište Terraform konfigurační soubory
+- Použijte data sources pro existující prostředky
+- Nasaďte VM pomocí Terraformu
+- Spravujte stav infrastruktury
 
-**Skills:** Infrastructure as Code, Terraform basics, Automation  
-**Time:** 60-75 minutes
+**Dovednosti:** Infrastructure as Code, základy Terraformu, automatizace  
+**Čas:** 60–75 minut
 
-### Challenge 05: Create Terraform Modules
-**Objective:** Build reusable infrastructure components
+### Výzva 05: Vytvoření Terraform modulů
+**Cíl:** Vytvoření znovupoužitelných infrastrukturních komponent
 
-Navigate to `challenges/challenge-05/` to:
-- Create a VM deployment module
-- Define module inputs and outputs
-- Use the module multiple times
-- Understand module composition
+Přejděte do `challenges/challenge-05/` a:
+- Vytvořte modul pro nasazení VM
+- Definujte vstupy a výstupy modulu
+- Použijte modul vícekrát
+- Pochopte kompozici modulů
 
-**Skills:** Terraform modules, Code reusability, Best practices  
-**Time:** 45-60 minutes
+**Dovednosti:** Terraform moduly, znovupoužitelnost kódu, best practices  
+**Čas:** 45–60 minut
 
-### Challenge 06: Implement Azure Key Vault
-**Objective:** Secure secrets management
+### Výzva 06: Implementace Azure Key Vault
+**Cíl:** Bezpečná správa tajemství (secrets)
 
-Navigate to `challenges/challenge-06/` to:
-- Create Azure Key Vault
-- Store GitHub credentials and secrets
-- Configure access policies
-- Access secrets from Terraform
+Přejděte do `challenges/challenge-06/` a:
+- Vytvořte Azure Key Vault
+- Uložte GitHub credentials a secrets
+- Nakonfigurujte přístupové politiky
+- Přistupujte k secrets z Terraformu
 
-**Skills:** Security, Secrets management, Access control  
-**Time:** 30-45 minutes
+**Dovednosti:** Bezpečnost, správa secrets, řízení přístupu  
+**Čas:** 30–45 minut
 
-### Challenge 07: Implement CI/CD Pipeline
-**Objective:** Automate infrastructure deployment
+### Výzva 07: Implementace CI/CD Pipeline
+**Cíl:** Automatizace nasazení infrastruktury
 
-Navigate to `challenges/challenge-07/` to:
-- Create GitHub Actions workflows
-- Integrate with Azure Key Vault
-- Automate Terraform deployments
-- Implement approval gates
+Přejděte do `challenges/challenge-07/` a:
+- Vytvořte GitHub Actions workflows
+- Integrujte s Azure Key Vault
+- Automatizujte Terraform deploymenty
+- Implementujte approval gates
 
-**Skills:** CI/CD, GitHub Actions, End-to-end automation  
-**Time:** 75-90 minutes
+**Dovednosti:** CI/CD, GitHub Actions, end-to-end automatizace  
+**Čas:** 75–90 minut
 
-## Learning Path
+## Postup učení
 
-This hackathon follows a progressive learning approach:
+Hackathon sleduje progresivní přístup k učení:
 
 ```
-Phase 1: Azure Fundamentals (Challenges 1-3)
-├── Manual operations via Azure Portal
-├── Understanding core Azure services
-└── Disaster recovery basics
+Fáze 1: Základy Azure (Výzvy 1-3)
+├── Manuální operace přes Azure Portal
+├── Pochopení základních Azure služeb
+└── Základy disaster recovery
 
-Phase 2: Infrastructure as Code (Challenges 4-5)
-├── Introduction to Terraform
-├── Automated resource deployment
-└── Reusable infrastructure modules
+Fáze 2: Infrastructure as Code (Výzvy 4-5)
+├── Úvod do Terraformu
+├── Automatizované nasazení prostředků
+└── Znovupoužitelné infrastrukturní moduly
 
-Phase 3: Security & Automation (Challenges 6-7)
-├── Secrets management with Key Vault
-├── CI/CD pipeline implementation
-└── Production-ready workflows
+Fáze 3: Bezpečnost a automatizace (Výzvy 6-7)
+├── Správa secrets pomocí Key Vault
+├── Implementace CI/CD pipeline
+└── Produkčně připravené workflow
 ```
 
-## Architecture
+## Architektura
 
-By the end of the hackathon, you'll have built:
+Na konci hackathonu budete mít vytvořenou následující infrastrukturu:
 
 ```
 Azure Subscription
 │
 ├── Resource Group
 │   ├── Virtual Network
-│   │   └── Subnet (with NSG)
-│   ├── Storage Account (VMDK/VHD storage)
-│   ├── Recovery Services Vault (Backups)
-│   ├── Key Vault (Secrets)
-│   └── Virtual Machines (Terraform-managed)
+│   │   └── Subnet (s NSG)
+│   ├── Storage Account (úložiště VMDK/VHD)
+│   ├── Recovery Services Vault (zálohy)
+│   ├── Key Vault (secrets)
+│   └── Virtual Machines (spravované Terraformem)
 │       ├── OS Disk
 │       ├── Network Interface
 │       └── Public IP
@@ -176,97 +186,72 @@ Azure Subscription
     └── CI/CD Workflows (GitHub Actions)
 ```
 
-## Repository Structure
+## Struktura repozitáře
 
 ```
 .
 ├── challenges/
-│   ├── challenge-01/          # Azure Portal fundamentals
-│   ├── challenge-02/          # Azure Backup setup
-│   ├── challenge-03/          # VM restore from backup
-│   ├── challenge-04/          # Terraform VM deployment
-│   ├── challenge-05/          # Terraform modules
+│   ├── challenge-01/          # Základy Azure Portalu
+│   ├── challenge-02/          # Nastavení Azure Backup
+│   ├── challenge-03/          # Obnova VM ze zálohy
+│   ├── challenge-04/          # Nasazení VM pomocí Terraformu
+│   ├── challenge-05/          # Terraform moduly
 │   ├── challenge-06/          # Azure Key Vault
-│   └── challenge-07/          # CI/CD with GitHub Actions
-├── terraform/                 # Terraform configuration and modules
-│   ├── main.tf                # Root infrastructure entry point
-│   └── modules/               # Reusable Terraform modules
-│       ├── windows-server/    # Windows Server with Entra ID module
-│       └── storage-infra/     # Storage account infrastructure module
-├── examples/                  # Module usage examples
-│   ├── windows-server/        # Windows Server with Entra ID setup
-│   ├── single-user/           # Single user storage setup
-│   └── storage-infra/         # Multi-user storage setup
-├── docs/                      # Additional documentation
-│   ├── prerequisites.md       # Setup guide
-│   └── troubleshooting.md     # Common issues
-├── TERRAFORM_MODULES.md       # Terraform modules documentation
-└── README.md                  # This file
+│   └── challenge-07/          # CI/CD s GitHub Actions
+├── terraform/                 # Konfigurace Terraformu a moduly
+│   ├── main.tf                # Hlavní vstupní bod infrastruktury
+│   └── modules/               # Znovupoužitelné Terraform moduly
+│       ├── windows-server/    # Modul Windows Server s Entra ID
+│       └── storage-infra/     # Modul pro storage infrastrukturu
+└── README.md                  # Tento soubor
 ```
 
-## Terraform Modules
+## Terraform moduly
 
-This repository includes reusable Terraform modules to accelerate your infrastructure deployment:
+Tento repozitář obsahuje znovupoužitelné Terraform moduly pro urychlení nasazení infrastruktury:
 
 ### Windows Server Module (`terraform/modules/windows-server`)
 
-Creates an Entra ID-enabled Windows Server 2022 infrastructure that supports up to 15 concurrent users:
-- **Windows Server 2022**: Datacenter edition with RDS support
-- **Entra ID Authentication**: Users authenticate with their Entra ID credentials
-- **System-Assigned Identity**: For secure Azure service integration
-- **Network Infrastructure**: VNet, Subnet, and NSG with security rules
+Vytvoří Windows Server 2022 infrastrukturu s podporou Entra ID pro až 15 současných uživatelů:
+- **Windows Server 2022**: Datacenter edice s podporou RDS
+- **Entra ID Authentication**: Uživatelé se přihlašují pomocí svých Entra ID přihlašovacích údajů
+- **System-Assigned Identity**: Pro bezpečnou integraci s Azure službami
+- **Síťová infrastruktura**: VNet, Subnet a NSG s bezpečnostními pravidly
 
-Users authenticate with their **Entra ID credentials** to access the server via RDP.
-
-**Quick Start:**
-```bash
-cd examples/windows-server
-terraform init && terraform apply
-```
+Uživatelé se přihlašují pomocí svých **Entra ID přihlašovacích údajů** pro přístup k serveru přes RDP.
 
 ### Storage Infrastructure Module (`terraform/modules/storage-infra`)
 
-Creates a complete storage infrastructure for VM images:
-- **Resource Group**: Per-user resource group (`rg-user-<number>`)
-- **Storage Account**: With public access enabled
-- **Storage Container**: Named `vmimages` for VM image storage
+Vytvoří kompletní storage infrastrukturu pro VM image:
+- **Resource Group**: Resource group pro každého uživatele (`rg-user-<číslo>`)
+- **Storage Account**: S povoleným veřejným přístupem
+- **Storage Container**: Pojmenovaný `vmimages` pro úložiště VM image
 
-**Quick Start:**
-```bash
-# Single user setup
-cd examples/single-user
-terraform init && terraform apply
+**Dokumentace**: Podrobné instrukce naleznete v [TERRAFORM_MODULES.md](TERRAFORM_MODULES.md).
 
-# Multiple users setup
-cd examples/storage-infra
-terraform init && terraform apply
-```
+## Co se naučíte
 
-**Documentation**: See [TERRAFORM_MODULES.md](TERRAFORM_MODULES.md) for detailed usage instructions.
+Po dokončení hackathonu budete umět:
 
-## What You'll Learn
+- Efektivně navigovat a používat Azure Portal
+- Rozumět síťovým konceptům v Azure (VNet, Subnet, NSG)
+- Pracovat s Azure Storage a formáty virtuálních disků
+- Konfigurovat Azure Backup a praktikovat disaster recovery
+- Psát Infrastructure as Code s Terraformem
+- Vytvářet znovupoužitelné Terraform moduly
+- Implementovat správu secrets pomocí Azure Key Vault
+- Budovat CI/CD pipeline pomocí GitHub Actions
+- Dodržovat bezpečnostní best practices
+- Nasazovat produkčně připravenou infrastrukturu
 
-By completing this hackathon, you will:
+## Další zdroje
 
-- Navigate and use the Azure Portal effectively
-- Understand Azure networking concepts (VNet, Subnet, NSG)
-- Work with Azure Storage and virtual disk formats
-- Configure Azure Backup and practice disaster recovery
-- Write Infrastructure as Code with Terraform
-- Create reusable Terraform modules
-- Implement secrets management with Azure Key Vault
-- Build CI/CD pipelines with GitHub Actions
-- Follow security best practices
-- Deploy production-ready infrastructure
-
-## Learning Resources
-
-### Azure Documentation
-- [Azure Portal Overview](https://docs.microsoft.com/en-us/azure/azure-portal/)
-- [Azure Virtual Machines](https://docs.microsoft.com/en-us/azure/virtual-machines/)
-- [Azure Virtual Networks](https://docs.microsoft.com/en-us/azure/virtual-network/)
-- [Azure Backup](https://docs.microsoft.com/en-us/azure/backup/)
-- [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/)
+### Azure dokumentace
+- [Přehled Azure Portalu](https://docs.microsoft.com/cs-cz/azure/azure-portal/)
+- [Azure Virtual Machines](https://docs.microsoft.com/cs-cz/azure/virtual-machines/)
+- [Azure Virtual Networks](https://docs.microsoft.com/cs-cz/azure/virtual-network/)
+- [Azure Backup](https://docs.microsoft.com/cs-cz/azure/backup/)
+- [Azure Key Vault](https://docs.microsoft.com/cs-cz/azure/key-vault/)
 
 ### Terraform
 - [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
@@ -274,62 +259,53 @@ By completing this hackathon, you will:
 - [Terraform Best Practices](https://www.terraform-best-practices.com/)
 
 ### CI/CD
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [Infrastructure as Code Best Practices](https://docs.microsoft.com/en-us/azure/architecture/framework/devops/iac)
+- [GitHub Actions dokumentace](https://docs.github.com/en/actions)
+- [Infrastructure as Code Best Practices](https://docs.microsoft.com/cs-cz/azure/architecture/framework/devops/iac)
 
-## Estimated Time
+## Odhadovaný čas
 
-- **Total Time**: 6-8 hours (full day workshop)
-- **Minimum**: Complete Challenges 1-4 (core skills)
-- **Recommended**: Complete all 7 challenges (full experience)
-- **Format**: Self-paced or instructor-led
+- **Celkový čas**: 6–8 hodin (celodenní workshop)
+- **Minimum**: Dokončete Výzvy 1–4 (základní dovednosti)
+- **Doporučeno**: Dokončete všech 7 výzev (kompletní zkušenost)
+- **Formát**: Vlastním tempem nebo s instruktorem
 
-## Support
+## Po dokončení hackathonu
 
-If you encounter issues during the hackathon:
+### Další kroky
+- Implementujte tyto dovednosti ve svých vlastních projektech
+- Prozkoumejte Azure Kubernetes Service (AKS)
+- Naučte se o Azure Landing Zones
+- Studujte multi-cloud nasazení
+- Připravte se na Azure certifikace (AZ-104, AZ-305)
 
-1. Check the challenge-specific README troubleshooting sections
-2. Review `docs/troubleshooting.md` for common issues
-3. Consult the Azure documentation links provided
-4. Ask facilitators for help (if in a workshop setting)
+### Sdílejte své zkušenosti
+- Napište blog post o tom, co jste se naučili
+- Sdílejte svůj infrastrukturní kód na GitHubu
+- Pomáhejte ostatním odpovídáním na otázky
+- Přispějte vylepšeními do tohoto repozitáře
 
-## After Completing the Hackathon
+## Přispívání
 
-### Next Steps
-- Implement these skills in your own projects
-- Explore Azure Kubernetes Service (AKS)
-- Learn about Azure Landing Zones
-- Study multi-cloud deployments
-- Prepare for Azure certifications (AZ-104, AZ-305)
+Hackathon je otevřený pro vylepšení! Příspěvky jsou vítány:
 
-### Share Your Experience
-- Write a blog post about what you learned
-- Share your infrastructure code on GitHub
-- Help others by answering questions
-- Contribute improvements to this repository
+- Nahlašujte problémy nebo chyby
+- Navrhujte nové výzvy
+- Vylepšujte dokumentaci
+- Sdílejte best practices
+- Posílejte pull requesty
 
-## Contributing
+## Licence
 
-This hackathon is open for improvements! Contributions are welcome:
+Tento projekt je poskytován tak, jak je, pro vzdělávací účely.
 
-- Report issues or bugs
-- Suggest new challenges
-- Improve documentation
-- Share best practices
-- Submit pull requests
+## Poděkování
 
-## License
-
-This project is provided as-is for educational purposes.
-
-## Acknowledgments
-
-Designed to provide hands-on experience with:
+Navrženo pro poskytnutí praktických zkušeností s:
 - Microsoft Azure
 - HashiCorp Terraform
 - GitHub Actions
-- Infrastructure as Code practices
+- Infrastructure as Code praktikami
 
 ---
 
-**Ready to start your Azure journey?** Begin with [Challenge 01](challenges/challenge-01/README.md)! 🚀
+**Jste připraveni začít svou cestu s Azure?** Začněte s [Výzvou 01](challenges/challenge-01/README.md)! 🚀
