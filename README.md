@@ -22,7 +22,7 @@ Pro přihlášení do Azure použijte následující formát uživatelského jm�
 user<číslo_uživatele>@MngEnvMCAP872133.onmicrosoft.com
 ```
 
-Například: `user1@MngEnvMCAP872133.onmicrosoft.com`, `user2@MngEnvMCAP872133.onmicrosoft.com` atd.
+Například: `user01@MngEnvMCAP872133.onmicrosoft.com`, `user02@MngEnvMCAP872133.onmicrosoft.com` atd.
 
 Heslo vám bude sděleno organizátory workshopu.
 
@@ -43,8 +43,8 @@ Před zahájením hackathonu se ujistěte, že máte:
 
 1. Naklonujte tento repozitář:
    ```bash
-   git clone https://github.com/msucharda/microhacks-infra.git
-   cd microhacks-infra
+   git clone https://github.com/CZSK-MicroHacks/MicroHack-Infra.git
+   cd MicroHack-Infra
    ```
 
 2. Přihlaste se do Azure:
