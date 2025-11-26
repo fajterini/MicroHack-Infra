@@ -163,29 +163,6 @@ Fáze 3: Bezpečnost a automatizace (Výzvy 6-7)
 └── Produkčně připravené workflow
 ```
 
-## Architektura
-
-Na konci hackathonu budete mít vytvořenou následující infrastrukturu:
-
-```
-Azure Subscription
-│
-├── Resource Group
-│   ├── Virtual Network
-│   │   └── Subnet (s NSG)
-│   ├── Storage Account (úložiště VMDK/VHD)
-│   ├── Recovery Services Vault (zálohy)
-│   ├── Key Vault (secrets)
-│   └── Virtual Machines (spravované Terraformem)
-│       ├── OS Disk
-│       ├── Network Interface
-│       └── Public IP
-│
-└── GitHub Repository
-    ├── Terraform Modules
-    └── CI/CD Workflows (GitHub Actions)
-```
-
 ## Struktura repozitáře
 
 ```
@@ -198,34 +175,11 @@ Azure Subscription
 │   ├── challenge-05/          # Terraform moduly
 │   ├── challenge-06/          # Azure Key Vault
 │   └── challenge-07/          # CI/CD s GitHub Actions
-├── terraform/                 # Konfigurace Terraformu a moduly
-│   ├── main.tf                # Hlavní vstupní bod infrastruktury
-│   └── modules/               # Znovupoužitelné Terraform moduly
-│       ├── windows-server/    # Modul Windows Server s Entra ID
-│       └── storage-infra/     # Modul pro storage infrastrukturu
+├── docs/                      # Dokumentace
+│   ├── prerequisites.md       # Předpoklady a nastavení
+│   └── troubleshooting.md     # Řešení problémů
 └── README.md                  # Tento soubor
 ```
-
-## Terraform moduly
-
-Tento repozitář obsahuje znovupoužitelné Terraform moduly pro urychlení nasazení infrastruktury:
-
-### Windows Server Module (`terraform/modules/windows-server`)
-
-Vytvoří Windows Server 2022 infrastrukturu s podporou Entra ID pro až 15 současných uživatelů:
-- **Windows Server 2022**: Datacenter edice s podporou RDS
-- **Entra ID Authentication**: Uživatelé se přihlašují pomocí svých Entra ID přihlašovacích údajů
-- **System-Assigned Identity**: Pro bezpečnou integraci s Azure službami
-- **Síťová infrastruktura**: VNet, Subnet a NSG s bezpečnostními pravidly
-
-Uživatelé se přihlašují pomocí svých **Entra ID přihlašovacích údajů** pro přístup k serveru přes RDP.
-
-### Storage Infrastructure Module (`terraform/modules/storage-infra`)
-
-Vytvoří kompletní storage infrastrukturu pro VM image:
-- **Resource Group**: Resource group pro každého uživatele (`rg-user-<číslo>`)
-- **Storage Account**: S povoleným veřejným přístupem
-- **Storage Container**: Pojmenovaný `vmimages` pro úložiště VM image
 
 ## Co se naučíte
 
