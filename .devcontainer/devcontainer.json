@@ -1,0 +1,22 @@
+{
+	"name": "Azure Microhack Development",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-azureresourcegroups",
+				"hashicorp.terraform"
+			]
+		}
+	},
+	"postCreateCommand": "bash --version && az version && terraform version",
+	"remoteUser": "vscode"
+}
