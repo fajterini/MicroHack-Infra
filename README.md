@@ -227,8 +227,6 @@ Vytvoří kompletní storage infrastrukturu pro VM image:
 - **Storage Account**: S povoleným veřejným přístupem
 - **Storage Container**: Pojmenovaný `vmimages` pro úložiště VM image
 
-**Dokumentace**: Podrobné instrukce naleznete v [TERRAFORM_MODULES.md](TERRAFORM_MODULES.md).
-
 ## Co se naučíte
 
 Po dokončení hackathonu budete umět:
