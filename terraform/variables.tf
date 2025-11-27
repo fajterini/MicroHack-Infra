@@ -12,7 +12,6 @@ variable "resource_group_name" {
 variable "vm_name" {
   description = "Name of the virtual machine"
   type        = string
-  default     = "vm-user05-terraform-dummy"
 }
 
 variable "admin_username" {
@@ -41,5 +40,5 @@ variable "subnet_prefix" {
 variable "rdp_source_address" {
   description = "Source address or range allowed for RDP (TCP 3389)"
   type        = string
-  default     = "*"
+  default     = "168.63.129.16"
 }

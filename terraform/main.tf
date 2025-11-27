@@ -14,7 +14,7 @@ data "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  name                = "${var.name_prefix}-nsg"
+  name                = "${var.vm_name}-nsg"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
 }
@@ -25,7 +25,7 @@ resource "azurerm_network_security_rule" "rdp" {
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
-  source_port_range           = "168.63.129.16"
+  source_port_range           = "*"
   destination_port_range      = "3389"
   source_address_prefix       = var.rdp_source_address
   destination_address_prefix  = "*"
@@ -42,7 +42,7 @@ resource "azurerm_network_security_rule" "rdp" {
 # }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "${var.name_prefix}-nic"
+  name                = "${var.vm_name}-nic"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
 
@@ -60,6 +60,7 @@ resource "azurerm_network_interface_security_group_association" "nic_nsg" {
 
 resource "azurerm_windows_virtual_machine" "vm" {
   name                = var.vm_name
+  computer_name       = var.vm_name
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = data.azurerm_resource_group.rg.location
   size                = "Standard_B2ms"
