@@ -59,7 +59,7 @@ resource "azurerm_network_interface_security_group_association" "nic_nsg" {
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "${var.name_prefix}-vm"
+  name                = var.vm_name
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = data.azurerm_resource_group.rg.location
   size                = "Standard_B2ms"

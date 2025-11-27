@@ -9,10 +9,10 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "name_prefix" {
-  description = "Prefix used for naming resources"
+variable "vm_name" {
+  description = "Name of the virtual machine"
   type        = string
-  default     = "mh-vm"
+  default     = "vm-user05-terraform-dummy"
 }
 
 variable "admin_username" {
